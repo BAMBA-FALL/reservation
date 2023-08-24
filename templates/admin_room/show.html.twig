@@ -1,0 +1,38 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Room{% endblock %}
+
+{% block body %}
+    <h1>Room</h1>
+
+    <table class="table table-index table-stripied table-responsive">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ room.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ room.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ room.description }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ room.prix }}</td>
+            </tr>
+            <tr>
+                <th>IsActive</th>
+                <td>{{ room.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_room_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_room_edit', {'id': room.id}) }}">edit</a>
+
+    {{ include('admin_room/_delete_form.html.twig') }}
+{% endblock %}

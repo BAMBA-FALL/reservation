@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ hotel.nom}}{% endblock %}
+
+{% block body %}
+
+<h1>{{ hotel.nom }}</h1>
+    <div class="row mb-5 ml-5 ">
+        {% if hotel.imageName is not null %}
+            {% set image = hotel.imageName %}
+        {% else %}
+            {% set image = "default.webp" %}
+        {% endif %}
+        <div class="col-12 col-md-3 mx-">
+            <img src="{{ asset('images/hotel/' ~ image) }}" alt="Illustration de la catégorie {{ hotel.nom }}" class="img-fluid">
+        </div>
+        <div class="col-12 col-md-9">
+        {% if hotel.description is not null %}
+        {{ hotel.description|raw }}
+        {% else %}
+        <p>Il n'y a pas encore de description pour cette catégorie.</p>
+        {% endif %}
+        </div>
+    </div>
+
+<div class="row">
+{% for room in hotel.rooms %}
+<div class="col-12 col-md-3 col-lg-2 d-flex align-items-stretch">
+    <div class="card">
+        {% if room.images|length > 0 %}
+            {% set image = room.images[0].imageName %}
+        {% else %}
+            {% set image = "default.webp" %}
+        {% endif %}
+        <img src="{{ asset('images/room/' ~ image) }}" class="card-img-top" alt="{{ room.titre }}">
+        <div class="card-body d-flex flex-wrap">
+            <h5 class="card-title">{{ room.titre }}</h5>
+            <div class="align-self-end w-100">
+                <p class="card-text">{{ room.prix|format_currency('EUR') }}</p>
+                <a href="{{ path('app_front_room', {'slug': room.slug}) }}" class="btn btn-dark">Voir</a>
+                <a href="{{ path('app_front_reservation', {id: room.id}) }}" class="btn btn-dark">Réserver</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

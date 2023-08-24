@@ -1,0 +1,12 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}New Hotel{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_admin_hotel_index') }}" class="btn btn-dark btn-sm mb-2">Retour à la liste</a>
+    <h1>Nouveau</h1>
+
+    {{ include('admin_hotel/_form.html.twig') }}
+
+    
+{% endblock %}

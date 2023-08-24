@@ -1,0 +1,47 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Hotel{% endblock %}
+
+{% block body %}
+    <a href="{{ path('app_admin_hotel_index') }}" class="btn btn-dark btn-sm mb-2">Retour à la liste</a>
+    
+    <div class="d-flex justify content-between align-items-center">
+     <a href="{{ path('app_admin_hotel_edit', {'id': hotel.id}) }}" class="btn btn-success">Modifier</a>
+    <h1>Hotel</h1>
+    </div>
+   
+
+    <table class="table table-index table-striped table-responsive">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ hotel.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ hotel.description }}</td>
+            </tr>
+            <tr>
+                <th>ImageName</th>
+                <td>{{ hotel.imageName }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ hotel.updatedAt ? hotel.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IsActive</th>
+                <td>{{ hotel.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    {{ include('admin_hotel/_delete_form.html.twig') }}
+{% endblock %}

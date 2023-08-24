@@ -1,0 +1,14 @@
+{% extends 'base-backend.html.twig'%}
+
+{% block title %}New Image{% endblock %}
+
+{% block body %}
+        <a href="{{ path('app_admin_image_index') }}" class="btn btn-dark btn-sm mb-2">Reour à la liste</a>
+        <h1>Nouvelle imgae</h1>
+
+
+
+    {{ include('admin_image/_form.html.twig') }}
+
+   
+{% endblock %}

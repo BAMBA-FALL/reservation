@@ -1,0 +1,64 @@
+<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html">
+          <span class="align-middle">Admin TUKKI</span>
+        </a>
+
+				<ul class="sidebar-nav">
+
+						<li class="sidebar-item">
+						<a class="sidebar-link" href="{{ path('app_home')}}">
+              <i class="align-middle" data-feather="globe"></i> <span class="align-middle">Mon site</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item {{ dashboardActive }}">
+						<a class="sidebar-link" href="{{ path('app_admin_dashboard')}}">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+            </a>
+					</li>
+
+
+					<li class="sidebar-header">
+						Pages
+					</li>
+
+					<li class="sidebar-item {{ homeActive }}">
+						<a class="sidebar-link" href="{{ path('app_admin_home_index')}}">
+              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Home</span>
+            </a>
+					</li>
+
+					<li class="sidebar-item {{ carouselActive }}">
+						<a class="sidebar-link" href="{{ path('app_admin_carousel_index')}}">
+              <i class="align-middle" data-feather="image"></i> <span class="align-middle">Carousel</span>
+            </a>
+					</li>
+
+						<li class="sidebar-item {{ hotelActive }}">
+						<a class="sidebar-link" href="{{ path('app_admin_hotel_index')}}">
+              <i class="align-middle" data-feather="home"></i> <span class="align-middle">Hotels</span>
+            </a>
+					</li>
+ 
+ 	<li class="sidebar-item {{ imageActive }}">
+						<a class="sidebar-link" href="{{ path('app_admin_image_index')}}">
+              <i class="align-middle" data-feather="image"></i> <span class="align-middle">Image</span>
+            </a>
+					</li>
+
+						<li class="sidebar-item {{ roomActive }}">
+						<a class="sidebar-link" href="{{ path('app_admin_room_index')}}">
+              <i class="align-middle" data-feather="key"></i> <span class="align-middle">Room</span>
+            </a>
+					</li>
+
+	<li class="sidebar-item {{ reservationActive }}">
+						<a class="sidebar-link" href="{{path('app_admin_reservation_index')}}">
+              <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Reservation</span>
+            </a>
+					</li>
+
+					
+				</ul>
+		</nav>

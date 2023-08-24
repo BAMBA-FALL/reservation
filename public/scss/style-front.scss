@@ -1,0 +1,34 @@
+@import '_variable.scss';
+
+body{
+    // background: url(../images/fabric_1.webp);
+    background-color:white;
+    font-family:  'Poppins', sans-serif;
+    color: $textColor;
+    @for $i from 1 through 6 {
+
+        h#{$i}{
+
+                font-family: 'Montserrat', sans-serif;;
+        }
+    }
+    .footer{
+
+  background-color: #333;
+  color: #fff;
+  padding: 50px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+       }
+       .img-30{
+        width: 30%;
+       }
+       .cursor-pointer{
+        cursor: pointer;
+       }
+
+}
+
+

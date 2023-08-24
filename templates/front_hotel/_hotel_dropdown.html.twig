@@ -1,0 +1,6 @@
+ <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ path('app_front_hotel', {'slug':'hotels'})}}">Toutes</a></li>
+            {% for hotel in hotels  %}
+            <li><a class="dropdown-item" href="{{ path('app_front_hotel', {'slug': hotel.slug})}}">{{hotel.nom}}</a></li>
+            {% endfor %}
+          </ul>

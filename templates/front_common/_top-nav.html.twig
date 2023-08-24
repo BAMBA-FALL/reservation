@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark navbar-fixed">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path('app_home2')}}">TUKKI</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav w-100">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{ path('app_home2')}}">Accueil</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hotels</a>
+         {{render(controller('App\\Controller\\FrontHotelController::renderHotelDropDOown')) }}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Contact</a>
+        </li>
+
+
+      <li class="nav-item ms-lg-auto">
+          {% if app.user is null %}
+          <a class="nav-link" href="">Inscription</a>
+          {% else %}
+          <a class="nav-link" href="">Mon Compte</a>
+          {% endif %}
+      </li>
+      {# on vérifie si l'utilisateur est un admin #}
+          {% if is_granted("ROLE_ADMIN") %}
+            <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_admin')}}">Admin</a>
+            </li>
+          {% endif %}
+
+        <li class="nav-item">
+        {% if is_granted("ROLE_USER") %}
+          <a class="nav-link" href="{{ path('app_logout')}}">Déconnexion</a>
+          {% else %}
+          <a class="nav-link" href="{{ path('app_login')}}">Connexion</a>
+          {% endif %}
+        </li>
+
+
+
+      </ul>
+    </div>
+  </div>
+</nav>

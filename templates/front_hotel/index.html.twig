@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos hotels{% endblock %}
+
+{% block body %}
+<h1>Nos hotels</h1>
+<div class="row">
+{% for hotel in hotels %}
+    <div class="col-12 col-md-3 d-flex align-items-stretch">
+        <div class="card">
+            {% set image = "default.webp" %}
+            {% if hotel.imageName is not null %}
+            {% set image = hotel.imageName %}
+            {% endif %}
+            <img src="{{ asset('images/hotel/' ~ image) }}" class="card-img-top" alt="{{ hotel.nom }}">
+            <div class="card-body d-flex justify-content-center">
+                <div class="align-self-end text-center">
+                    <h5 class="card-title">{{ hotel.nom }}</h5>
+                    <a href="{{ path('app_front_hotel', {'slug': hotel.slug }) }}" class="btn btn-dark">Voir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+Aucune catégorie
+{% endfor %}
+</div>
+{% endblock %}

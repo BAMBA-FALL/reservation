@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{room.titre}}{% endblock %}
+
+{% block body %}
+<h1> {{ room.titre }} </h1>
+<div class="row">
+<div class="col-12 col-md-3">
+{# on vérifie si le room a des images #}
+{% if room.images|length > 0 %}
+{# onaffiche la première image #}
+
+   <a href="{{ asset('images/room/' ~ room.images[0].imageName) }}" data-lightbox="{{room.titre}}">
+ <img src="{{ asset('images/room/' ~ room.images[0].imageName) }}" alt="{{ room.titre }}" class="img-fluid" id="img-big">
+</a>
+{# on vérifie s'il y a plus d'une image dans la collection #}
+{% if room.images|length > 1 %}
+                <div class="row justify-content-between">
+
+{% for image in room.images %}
+            {% if loop.index0 > 0 %}
+                <div class="col img-30 mt-3 cursor-pointer">
+<img src="{{ asset('images/room/' ~ room.images[loop.index0].imageName )}}" alt="" class="img-fluid" id="img-big">
+                </div>
+            {% endif %}
+{% endfor %}
+</div>
+
+{% endif %}
+{% endif %}
+</div>
+<div class="col-12 col-md-9">
+<div>{{room.description|raw}}</div>
+<div>Prix {{room.prix|format_currency ('EUR')}}</div>
+
+</div>
+</div>
+{% endblock %}
+{# on recupére les objet de la classe cursor-pointer #}
+{% block javascripts %}
+<script>$('.cursor-pointer').on('click', function(e){
+    e.stopPropagation();
+    // on recupére la valeur de l'attribut scr de l'image cliqué
+    let itemSource = $(this).find('img').attr('src')
+    //on recupére la valeur de l'attribut src de la grande image 
+    let currentSource = $('#img-big').attr('src')
+    //on remplace l'attribut src de la grande image par celuide celle cliqué et on remplace 
+    //également l'attribur de l'href de la balise <a>
+    $('#img-big').attr('src', itemSource);
+    $('#img-big').parent().attr('href', itemSource);
+    // on change le src de l'image cliqué 
+    $(this).find('img').attr('src', currentSource);
+})</script>
+{% endblock %}
