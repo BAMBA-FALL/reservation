@@ -3,9 +3,50 @@
 {% block title %}Hello FrontReservationController!{% endblock %}
 
 {% block body %}
-<h1>Réservation</h1>
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button type="submit" class="btn btn-dark">Réserver</button>
-{{ form_end(form)}}
+<div class="container"> {# Encapsulate the content within a Bootstrap container #}
+    <h1>Réservation</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+        <h2>{{ room.titre}}</h2>
+        <div>{{ room.description|raw}}</div>
+        <div>Prix/jour : <span id="prix">{{ room.prix }}</span></div>
+        </div>
+        <div id="total"></div>
+        <div class="col-md-6"> {# Use a column class to control the width #}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-dark">Réserver</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+function calculPrix(){
+    let dateArrivee = new Date($("#reservation_dateDebut").val());
+    let dateDepart = new Date($("#reservation_dateFin").val());
+    if(dateDepart<dateArrivee){
+        alert("La date de départ ne doit pas être antérieure à la date d'arrivée");
+    }else{
+        let ms = dateDepart - dateArrivee;
+        let s = ms/1000;
+        let m = s/60;
+        let h = m/60;
+        let j = parseInt(h/24);
+        //
+        let total = $("#prix").html()*j;
+        $("#total").html(total);
+    }
+}
+$("#reservation_dateDebut").on("change", function(){
+    calculPrix();
+})
+$("#reservation_dateFin").on("change", function(){
+    calculPrix();
+})
+</script>
+
 {% endblock %}

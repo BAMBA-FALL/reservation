@@ -34,6 +34,9 @@ class Reservation
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
+    #[ORM\Column]
+    private ?float $prix = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +110,18 @@ class Reservation
     public function setPrenom(string $prenom): static
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): static
+    {
+        $this->prix = $prix;
 
         return $this;
     }

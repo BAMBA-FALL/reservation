@@ -30,10 +30,18 @@ class FrontReservationController extends AbstractController
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            // dd($form->getData());
+            $dateDebut = $form->get("dateDebut")->getData();
+            // dd($dateDebut);
+            $dateFin = $form->get("dateFin")->getData();
+            $diff = $dateDebut->diff($dateFin);
+            $nbJour = $diff->format("%a");
+            // dd($nbJour);
+            $reservation->setPrix($room->getPrix()*$nbJour);
             $entityManagerInterface->persist($reservation);
             $entityManagerInterface->flush();
             $this->addFlash("success", "Votre réservation a bien été prise en compte");
-            $this->redirectToRoute("app_home");
+            return $this->redirectToRoute("app_home");
         }
 
         return $this->render('front_reservation/index.html.twig', [
