@@ -60,6 +60,7 @@ class AdminRoomController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($room);
             $entityManager->flush();
+            $this->addFlash("success", "Votre réservation a bien été prise en compte");
 
             return $this->redirectToRoute('app_admin_room_index', [], Response::HTTP_SEE_OTHER);
         }
